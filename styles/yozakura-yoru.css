@@ -1,0 +1,45 @@
+/**
+ *    ░█░█░█▀█░█░█░█▀▄░█▀█░█▀▄░░░█▀▀░█▀█░█░░░█▀█░█▀▄░█▀▀  
+ *    ░█▄█░█▀█░░█░░█▀▄░█▀█░█▀▄░░░█░░░█░█░█░░░█░█░█▀▄░▀▀█  
+ *    ░▀░▀░▀░▀░░▀░░▀▀░░▀░▀░▀░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀  
+ * 
+ *    ░█░█░█▀█░▀▀█░█▀█░█░█░█░█░█▀▄░█▀█░░░█░█░█▀█░█▀▄░█░█
+ *    ░░█░░█░█░▄▀░░█▀█░█▀▄░█░█░█▀▄░█▀█░░░░█░░█░█░█▀▄░█░█
+ *    ░░▀░░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░░░░▀░░▀▀▀░▀░▀░▀▀▀
+ --------------------------------------------------------*/
+
+/* Base */
+@define-color void       #18203a;
+@define-color depths     #1e2840;
+@define-color base       #2a3450;
+@define-color raised     #303c5c;
+@define-color hover      #3a4868;
+@define-color active     #445278;
+
+/* Surface */
+@define-color rim        #6070a0;
+@define-color select     #7080b0;
+@define-color match      #8090c0;
+
+/* Text */
+@define-color faint      #9098c0;
+@define-color muted      #b0bcd8;
+@define-color text       #d0daf0;
+
+/* Accents */
+@define-color lantern    #f2d4b8;
+@define-color blush      #d8aac4;
+@define-color petal      #b898d0;
+@define-color iris       #9080c0;
+@define-color wisteria   #8898c8;
+@define-color indigo     #6080b8;
+@define-color harbour    #507098;
+@define-color sky        #7ab0c8;
+@define-color seafoam    #609098;
+@define-color moss       #7aa898;
+@define-color starlight  #e8d870;
+@define-color amber      #d0a870;
+@define-color ember      #b07888;
+@define-color crimson    #c07888;
+@define-color bloom      #e098a0;
+@define-color moon       #e8eef8;

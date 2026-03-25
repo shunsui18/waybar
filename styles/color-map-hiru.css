@@ -1,0 +1,122 @@
+/**
+ *    ░█░█░█▀█░█░█░█▀▄░█▀█░█▀▄            
+ *    ░█▄█░█▀█░░█░░█▀▄░█▀█░█▀▄            
+ *    ░▀░▀░▀░▀░░▀░░▀▀░░▀░▀░▀░▀            
+ * 
+ *    ░█▀▀░█▀█░█░░░█▀█░█▀▄░░░░░█▄█░█▀█░█▀█
+ *    ░█░░░█░█░█░░░█░█░█▀▄░▄▄▄░█░█░█▀█░█▀▀
+ *    ░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░░░░░▀░▀░▀░▀░▀░░
+ -------------------------------------------*/
+
+@import "yozakura-hiru.css";
+
+/* tooltip colors */
+@define-color tooltip-bg @base;
+@define-color tooltip-txt @text;
+@define-color tooltip-border @starlight;
+
+/* app-launcher module colors */
+@define-color app-launcher-bg @base;
+@define-color app-launcher-txt @cream;
+@define-color app-launcher-border @starlight;
+
+/* clock-weather group colors */
+@define-color clk-weather-border @starlight;
+
+/* clock module colors */
+@define-color clock-bg @base;
+@define-color clock-txt @lantern;
+
+/* weather module colors */
+@define-color weather-bg @base;
+@define-color weather-txt @sky;
+
+/* workspaces module colors */
+@define-color ws-bg @base;
+@define-color ws-border @starlight;
+@define-color ws-btn-txt @text;
+@define-color ws-btn-empty-txt @rim;
+@define-color ws-btn-active-txt @iris;
+@define-color ws-btn-hover @iris;
+@define-color ws-btn-hover-txt @raised;
+@define-color ws-btn-active-hover-txt @iris;
+
+/* mpris-grp group colors */
+@define-color mpris-border @starlight;
+
+/* mpris module colors */
+@define-color mpris-bg @base;
+@define-color mpris-txt @ember;
+@define-color mpris-spotify-bg @moss;
+@define-color mpris-spotify-txt @raised;
+@define-color mpris-mpv-bg @iris;
+@define-color mpris-mpv-txt @raised;
+@define-color mpris-vlc-bg @bloom;
+@define-color mpris-vlc-txt @raised;
+
+/* notif-updates group colors */
+@define-color notif-updates-bg @base;
+@define-color notif-updates-border @starlight;
+
+/* notification module colors */
+@define-color notif-txt @wisteria;
+
+/* updates module colors */
+@define-color updates-txt @bloom;
+
+/* net-bt group colors */
+@define-color net-bt-border @starlight;
+
+/* network module colors */
+@define-color net-bg @base;
+@define-color net-txt @sky;
+
+/* bluetooth module colors */
+@define-color bt-bg @base;
+@define-color bt-txt @cream;
+
+/* gpu-cpu group colors */
+@define-color gpu-cpu-border @starlight;
+
+/* gpu temperature module colors */
+@define-color gpu-bg @base;
+@define-color gpu-txt @seafoam;
+@define-color gpu-txt-warning @amber;
+
+/* cpu temperature module colors */
+@define-color temp-bg @base;
+@define-color temp-txt @crimson;
+@define-color temp-txt-warning @amber;
+
+/* cpu process module colors */
+@define-color cpu-bg @base;
+@define-color cpu-border @starlight;
+@define-color cpu-txt @crimson;
+
+/* vol-bl group colors */
+@define-color vol-bl-border @starlight;
+
+/* pulseaudio module colors */
+@define-color vol-bg @base;
+@define-color vol-txt @iris;
+@define-color vol-txt-muted @muted;
+
+/* backlight module colors */
+@define-color bl-bg @base;
+@define-color bl-txt @text;
+@define-color bl-txt-level-1 @muted;
+@define-color bl-txt-level-2 @faint;
+@define-color bl-txt-level-3 @bloom;
+@define-color bl-txt-level-4 @lantern;
+@define-color bl-txt-level-5 @starlight;
+
+/* taskbar colors */
+@define-color tb-bg @base;
+@define-color tb-border @starlight;
+@define-color tb-btn-bg-hover @iris;
+@define-color tb-btn-border-active @iris;
+
+/* power module colors */
+@define-color pwr-bg @base;
+@define-color pwr-txt @bloom;
+@define-color pwr-border @starlight;

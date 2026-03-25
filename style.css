@@ -1,0 +1,382 @@
+/**
+ *    ░█░█░█▀█░█░█░█▀▄░█▀█░█▀▄
+ *    ░█▄█░█▀█░░█░░█▀▄░█▀█░█▀▄
+ *    ░▀░▀░▀░▀░░▀░░▀▀░░▀░▀░▀░▀                           
+ *                            
+ *    ░█▀▀░▀█▀░█░█░█░░░█▀▀    
+ *    ░▀▀█░░█░░░█░░█░░░█▀▀    
+ *    ░▀▀▀░░▀░░░▀░░▀▀▀░▀▀▀    
+ -------------------------------*/
+
+@import "color-map.css";
+
+/* global properties */
+* {
+	font-family:
+		ComicShannsMono Nerd Font,
+		Kosugi Maru;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+/* window styling */
+window#waybar {
+	background-color: transparent;
+	border: none;
+	transition-property: background-color;
+	transition-duration: 0.5s;
+}
+
+/* tooltip styling */
+tooltip,
+tooltip.background,
+tooltip > box,
+tooltip > window {
+	background: none;
+	box-shadow: none;
+	border: none;
+}
+
+tooltip * {
+	background: none;
+	box-shadow: none;
+	border: none;
+}
+
+tooltip label {
+	font-weight: 400;
+	background-color: @tooltip-bg;
+	color: @tooltip-txt;
+	margin: 1rem;
+	padding: 1rem;
+	border: 5px solid @tooltip-border;
+	border-radius: 15px;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.8);
+}
+/*----------------------------------------------------*/
+
+/* app-launcher styling */
+#custom-app-launcher {
+	background-color: @app-launcher-bg;
+	color: @app-launcher-txt;
+	border-radius: 15px;
+	border: 5px solid @app-launcher-border;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.8);
+	padding: 1rem 1.9rem 1rem 1.5rem;
+	margin: 1rem;
+}
+
+/* clock-weather group styling */
+#clk-weather {
+	margin: 1rem;
+	border-radius: 15px;
+	border: 5px solid @clk-weather-border;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* clock module styling */
+#clock {
+	background-color: @clock-bg;
+	color: @clock-txt;
+	padding: 0 1rem;
+}
+
+#clock.time {
+	border-radius: 9px 0 0 9px;
+}
+
+/* weather module styling */
+#custom-weather {
+	background-color: @weather-bg;
+	color: @weather-txt;
+	padding: 0 1rem;
+	margin-left: 1px;
+	border-radius: 0 9px 9px 0;
+}
+/*----------------------------------------------------*/
+
+/* workspaces module styling */
+#workspaces {
+	background-color: @ws-bg;
+	border-radius: 15px;
+	margin: 1rem;
+	padding: 0.4rem;
+	border: 5px solid @ws-border;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.8);
+}
+
+#workspaces button {
+	color: @ws-btn-txt;
+	padding: 0 0.9rem;
+}
+
+#workspaces button.empty {
+	color: @ws-btn-empty-txt;
+}
+
+#workspaces button.active {
+	color: @ws-btn-active-txt;
+}
+
+#workspaces button:hover {
+	box-shadow: none;
+	background-color: @ws-btn-hover;
+	color: @ws-btn-hover-txt;
+}
+
+#workspaces button.active:hover {
+	background-color: transparent;
+	color: @ws-btn-active-hover-txt;
+}
+/*----------------------------------------------------*/
+
+/* mpris-grp group styling */
+#mpris-grp {
+	margin: 1rem;
+	border-radius: 15px;
+	border: 5px solid @mpris-border;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* mpris module styling */
+#mpris {
+	background-color: @mpris-bg;
+	color: @mpris-txt;
+	padding: 0 1rem;
+}
+
+#mpris.btn-prev {
+	border-radius: 9px 0 0 9px;
+}
+
+#mpris.block {
+	padding: 0;
+}
+
+#mpris.label {
+	border-radius: 0 9px 9px 0;
+}
+
+#mpris.spotify {
+	background-color: @mpris-spotify-bg;
+	color: @mpris-spotify-txt;
+}
+
+#mpris.mpv {
+	background-color: @mpris-mpv-bg;
+	color: @mpris-mpv-txt;
+}
+
+#mpris.vlc {
+	background-color: @mpris-vlc-bg;
+	color: @mpris-vlc-txt;
+}
+/*----------------------------------------------------*/
+
+/* notif-updates group styling */
+#notif-updates {
+	background-color: @notif-updates-bg;
+	margin: 1rem;
+	border-radius: 15px;
+	border: 5px solid @notif-updates-border;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* notification module styling */
+#custom-notification {
+	color: @notif-txt;
+	padding: 1rem 1.8rem 1rem 1.5rem;
+}
+
+/* updates module styling */
+#custom-updates {
+	color: @updates-txt;
+}
+/*----------------------------------------------------*/
+
+/* net-bt group styling */
+#net-bt {
+	margin: 1rem;
+	border-radius: 15px;
+	border: 5px solid @net-bt-border;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* network module styling */
+#network {
+	background-color: @net-bg;
+	color: @net-txt;
+	padding: 0 1rem;
+	border-radius: 9px 0 0 9px;
+}
+
+/* bluetooth module styling */
+#bluetooth {
+	background-color: @bt-bg;
+	color: @bt-txt;
+	padding: 0 1.6rem;
+	margin-left: 1px;
+	border-radius: 0 9px 9px 0;
+}
+/*----------------------------------------------------*/
+
+/* gpu-cpu group styling */
+#gpu-cpu {
+	margin: 1rem;
+	border-radius: 15px;
+	border: 5px solid @gpu-cpu-border;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* gpu temperature module styling */
+#custom-gpu-temp {
+	background-color: @gpu-bg;
+	color: @gpu-txt;
+	padding: 0 1.5rem;
+	border-radius: 9px 0 0 9px;
+}
+
+#custom-gpu-temp.warning {
+	color: @gpu-txt-warning;
+}
+
+#custom-gpu-temp.critical {
+	color: red;
+}
+
+/* cpu temperature module styling */
+#temperature {
+	background-color: @temp-bg;
+	color: @temp-txt;
+	padding-left: 1rem;
+	margin-left: 1px;
+}
+
+#temperature.warning {
+	color: @temp-txt-warning;
+}
+
+#temperature.critical {
+	color: red;
+}
+
+#custom-block.cpu {
+	background-color: @cpu-bg;
+	color: @cpu-border;
+	padding-left: 0.4rem;
+	padding-right: 0.5rem;
+}
+
+/* cpu process module styling */
+#cpu {
+	background-color: @cpu-bg;
+	color: @cpu-txt;
+	padding-right: 1rem;
+	border-radius: 0 9px 9px 0;
+}
+/*----------------------------------------------------*/
+
+/* vol-bl group styling */
+#vol-bl {
+	margin: 1rem;
+	border-radius: 15px;
+	border: 5px solid @vol-bl-border;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* pulseaudio module styling */
+#pulseaudio {
+	background-color: @vol-bg;
+	color: @vol-txt;
+	padding: 0 1rem;
+	border-radius: 9px 0 0 9px;
+}
+
+#pulseaudio.muted {
+	color: @vol-txt-muted;
+	padding: 0 1.6rem;
+}
+
+/* backlight module styling */
+#custom-backlight {
+	background-color: @bl-bg;
+	color: @bl-txt;
+	padding: 0 1rem;
+	margin-left: 1px;
+	border-radius: 0 9px 9px 0;
+}
+
+#custom-backlight.level-1 {
+	color: @bl-txt-level-1;
+}
+
+#custom-backlight.level-2 {
+	color: @bl-txt-level-2;
+}
+
+#custom-backlight.level-3 {
+	color: @bl-txt-level-3;
+}
+
+#custom-backlight.level-4 {
+	color: @bl-txt-level-4;
+}
+
+#custom-backlight.level-5 {
+	color: @bl-txt-level-5;
+}
+
+#custom-backlight.error {
+	color: red;
+}
+/*----------------------------------------------------*/
+
+/* taskbar styling */
+#taskbar {
+	background-color: @tb-bg;
+	margin: 1rem;
+	padding: 0.4rem;
+	border-radius: 15px;
+	border: 5px solid @tb-border;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.8);
+}
+
+#taskbar button {
+	padding-left: 0.9rem;
+	padding-right: 0.75rem;
+	margin: 0 0.2rem;
+	border: solid 0.2rem transparent;
+}
+
+#taskbar button:hover {
+	background-color: @tb-btn-bg-hover;
+}
+
+#taskbar button.active {
+	border-color: @tb-btn-border-active;
+}
+
+#taskbar button.active:hover {
+	background: none;
+	box-shadow: none;
+}
+
+#taskbar.empty {
+	background: none;
+	border: none;
+	box-shadow: none;
+	padding: 0;
+	margin: 0;
+}
+/*----------------------------------------------------*/
+
+/* power module styling */
+#custom-power {
+	background-color: @pwr-bg;
+	color: @pwr-txt;
+	border-radius: 15px;
+	border: 5px solid @pwr-border;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.8);
+	padding: 1rem 1.9rem 1rem 1.5rem;
+	margin: 1rem;
+}

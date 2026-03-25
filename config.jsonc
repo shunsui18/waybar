@@ -1,0 +1,84 @@
+//    ░█░█░█▀█░█░█░█▀▄░█▀█░█▀▄
+//    ░█▄█░█▀█░░█░░█▀▄░█▀█░█▀▄
+//    ░▀░▀░▀░▀░░▀░░▀▀░░▀░▀░▀░▀
+//
+//    ░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀
+//    ░█░░░█░█░█░█░█▀▀░░█░░█░█
+//    ░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀
+//------------------------------
+{
+	"margin-top": 20,
+	"margin-left": 20,
+	"margin-right": 20,
+	"margin-bottom": 0,
+	"layer": "bottom",
+	// groups
+	"group/clk-weather": {
+		"orientation": "horizontal",
+		"modules": [
+			"clock#time",
+			"clock#date",
+			"custom/weather"
+		],
+	},
+	"group/mpris-grp": {
+		"orientation": "horizontal",
+		"modules": [
+			"mpris#btn-prev",
+			"mpris#btn-play-pause",
+			"mpris#btn-next",
+			"mpris#block",
+			"mpris#label",
+		],
+	},
+	"group/notif-updates": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/notification",
+			"custom/updates"
+		],
+	},
+	"group/net-bt": {
+		"orientation": "horizontal",
+		"modules": [
+			"network",
+			"bluetooth"
+		],
+	},
+	"group/gpu-cpu": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/gpu-temp",
+			"temperature",
+			"custom/block#cpu",
+			"cpu"
+		],
+	},
+	"group/vol-bl": {
+		"orientation": "horizontal",
+		"modules": [
+			"pulseaudio",
+			"custom/backlight"
+		],
+	},
+	// module positions
+	"modules-left": [
+		"custom/app-launcher",
+		"group/clk-weather",
+		"hyprland/workspaces",
+		"group/mpris-grp",
+	],
+	"modules-center": [
+		"group/notif-updates"
+	],
+	"modules-right": [
+		"group/net-bt",
+		"group/gpu-cpu",
+		"group/vol-bl",
+		"wlr/taskbar",
+		"custom/power",
+	],
+	"include": [
+		"modules.jsonc"
+	],
+}

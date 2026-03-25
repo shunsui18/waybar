@@ -1,0 +1,311 @@
+//    ░█░█░█▀█░█░█░█▀▄░█▀█░█▀▄
+//    ░█▄█░█▀█░░█░░█▀▄░█▀█░█▀▄
+//    ░▀░▀░▀░▀░░▀░░▀▀░░▀░▀░▀░▀
+//
+//    ░█▄█░█▀█░█▀▄░█░█░█░░░█▀▀░█▀▀
+//    ░█░█░█░█░█░█░█░█░█░░░█▀▀░▀▀█
+//    ░▀░▀░▀▀▀░▀▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
+//----------------------------------
+{
+	//custom app launcher module using rofi
+	"custom/app-launcher": {
+		"format": "",
+		"on-click": "~/.config/rofi/scripts/app-launcher-launch.sh",
+		"tooltip": false,
+	},
+	//clock module showing time
+	"clock#time": {
+		"interval": 1,
+		"format": "  {:%I : %M %p}",
+		"format-alt": "  {:%H : %M}",
+		"tooltip": false,
+	},
+	//clock module showing date
+	"include": [
+		"calander-module/clock-date-module.jsonc"
+	],
+	//custom weather module using wttr.in
+	"custom/weather": {
+		"format": "{}°",
+		"tooltip": true,
+		"interval": 1,
+		"exec": "wttrbar --location 712702 --ampm --nerd --date-format \" %a, %d %B %Y\" --custom-indicator \"{ICON}  {FeelsLikeC}\"",
+		"return-type": "json",
+		"on-scroll-up": "",
+		"on-scroll-down": "",
+	},
+	//hyprland workspaces module
+	"hyprland/workspaces": {
+		"format": "{icon}",
+		"on-click": "activate",
+		"format-icons": {
+			"1": "一",
+			"2": "二",
+			"3": "三",
+			"4": "四",
+			"5": "五",
+			"6": "六",
+			"7": "七",
+			"8": "八",
+			"9": "九",
+			"10": "十",
+		},
+		"sort-by-number": true,
+		"persistent-workspaces": {
+			"DP-1": [
+				"1",
+				"2",
+				"3",
+				"4",
+				"5"
+			],
+		},
+	},
+	//mpris module for music
+	"mpris#btn-prev": {
+		"format": "󰙣",
+		"on-click": "playerctl previous",
+		"on-click-right": "",
+		"on-click-middle": "",
+		"on-scroll-up": "",
+		"on-scroll-down": "",
+		"ignored-players": [
+			// "<package_name>"
+		],
+		"tooltip": false,
+	},
+	"mpris#btn-play-pause": {
+		"format": "{status_icon}",
+		"on-click": "playerctl play-pause",
+		"on-click-right": "",
+		"on-click-middle": "",
+		"on-scroll-up": "",
+		"on-scroll-down": "",
+		"status-icons": {
+			"paused": "",
+			"playing": "",
+		},
+		"ignored-players": [
+			// "<package_name>"
+		],
+		"tooltip": false,
+	},
+	"mpris#btn-next": {
+		"format": "󰙡",
+		"on-click": "playerctl next",
+		"on-click-right": "",
+		"on-click-middle": "",
+		"on-scroll-up": "",
+		"on-scroll-down": "",
+		"ignored-players": [
+			// "<package_name>"
+		],
+		"tooltip": false,
+	},
+	"mpris#block": {
+		"format": "",
+		"on-click": "",
+		"on-click-right": "",
+		"on-click-middle": "",
+		"on-scroll-up": "",
+		"on-scroll-down": "",
+		"ignored-players": [
+			// "<package_name>"
+		],
+		"tooltip": false,
+	},
+	"mpris#label": {
+		"interval": 1,
+		"format": "{player_icon}  {title} - {artist}",
+		"format-paused": "{player_icon}  <i>{title} - {artist}</i>",
+		"on-click": "~/.config/waybar/scripts/mpris-focus.sh",
+		"on-click-right": "",
+		"on-click-middle": "",
+		"on-scroll-up": "",
+		"on-scroll-down": "",
+		"player-icons": {
+			"default": "",
+			"mpv": "",
+			"vlc": "󰕼",
+			"spotify": "󰓇",
+		},
+		"status-icons": {
+			"paused": "",
+			"playing": "",
+		},
+		"ignored-players": [
+			// "<package_name>"
+		],
+		"tooltip-format": "{player_icon}  {player}\n──────────────────────── 󰙣 {status_icon} 󰙡  ────────────────────────\n{position}                                        {length}\n\nTitle - {title}\n\nArtist - {artist}\n\nAlbum - {album}",
+	},
+	//custom notification module using swaync
+	"custom/notification": {
+		"tooltip": true,
+		"format": "<span size='16pt'>{icon}</span>",
+		"format-icons": {
+			"notification": "󱅫",
+			"none": "󰂜",
+			"dnd-notification": "󰂠",
+			"dnd-none": "󰪓",
+			"inhibited-notification": "󰂛",
+			"inhibited-none": "󰪑",
+			"dnd-inhibited-notification": "󰂛",
+			"dnd-inhibited-none": "󰪑",
+		},
+		"return-type": "json",
+		"exec-if": "which swaync-client",
+		"exec": "swaync-client -swb",
+		"on-click": "swaync-client -t -sw",
+		"on-click-right": "swaync-client -d -sw",
+		"on-click-middle": "killall -9 swaync && swaync-client &",
+		"escape": true,
+	},
+	//custom updates module using waybar-module-pacman-updates
+	"custom/updates": {
+		"format": "{}{icon}",
+		"return-type": "json",
+		"format-icons": {
+			"has-updates": " 󰏗  ",
+			"updated": ""
+		},
+		"exec-if": "which waybar-module-pacman-updates",
+		"exec": "~/.config/waybar/scripts/waybar-module-pacman-updates.sh",
+		"on-click": "pkexec paru -Syuu --needed --noconfirm",
+		"on-click-right": "",
+		"on-click-middle": ""
+	},
+	//network module
+	"network": {
+		"interval": 1,
+		"format": " {bandwidthDownBytes}   {bandwidthUpBytes}",
+		"min-length": 23,
+		"max-length": 23,
+		"tooltip": false,
+		"on-scroll-up": "",
+		"on-scroll-down": "",
+	},
+	//bluetooth module using blueman-manager
+	"bluetooth": {
+		"format-on": "",
+		"format-off": "󰂲",
+		"format-disabled": "󰂲",
+		"format-connected": "{device_icon} {device_battery_percentage}%",
+		"format-connected-battery": "{device_icon} {device_battery_percentage}%",
+		"tooltip": true,
+		"tooltip-format": "",
+		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_icon} {device_alias}\t{device_address}",
+		"tooltip-format-enumerate-connected-battery": "{device_icon} {device_alias}\t{device_address}\t{device_battery_percentage}%",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "󱡏",
+			"headset": "󰋎",
+			"phone": "",
+			"portable": "",
+			"computer": "",
+			"keyboard": "",
+			"mouse": "󰍽",
+			"speaker": "󰓃",
+			"default": "",
+		},
+		"on-click": "~/.config/waybar/scripts/bt-toggle.sh",
+		"on-click-right": "~/.config/waybar/scripts/bluetooth-popup.sh",
+		"on-scroll-up": "",
+		"on-scroll-down": "",
+	},
+	//gpu temperature module
+	"custom/gpu-temp": {
+		"interval": 1,
+		"exec": "~/.config/waybar/scripts/gpu-temp.sh",
+		"return-type": "json",
+		"format": "GPU  {}",
+		"tooltip": true,
+		"on-scroll-up": "",
+		"on-scroll-down": "",
+	},
+	//cpu temperature module
+	"temperature": {
+		"interval": 1,
+		"thermal-zone": 2,
+		"hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+		"format": "CPU  {temperatureC}°C ",
+		"warning-threshold": 60,
+		"format-warning": "CPU  {temperatureC}°C ",
+		"critical-threshold": 80,
+		"format-critical": "CPU  {temperatureC}°C ",
+		"tooltip": false,
+		"min-length": 12,
+		"max-length": 12,
+		"on-scroll-up": "",
+		"on-scroll-down": "",
+	},
+	"custom/block#cpu": {
+		"format": "",
+		"tooltip": false,
+		"on-scroll-up": "",
+		"on-scroll-down": "",
+	},
+	//cpu process module
+	"cpu": {
+		"interval": 1,
+		"format": "  {usage} %",
+		"max-length": 9,
+		"tooltip": false,
+		"min-length": 9,
+		"on-scroll-up": "",
+		"on-scroll-down": "",
+	},
+	//pulseaudio module for volume using pwvucontrol
+	"pulseaudio": {
+		"format": "{icon}  {volume} %",
+		"format-muted": "󰖁",
+		"format-icons": {
+			"default": [
+				"󰕿",
+				"󰖀",
+				"󰕾"
+			],
+		},
+		"scroll-step": 1,
+		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"on-click-right": "~/.config/waybar/scripts/volume-popup.sh",
+		"ignored-sinks": [
+			"Easy Effects Sink"
+		],
+	},
+	//custom backlight module using ddcutil
+	"custom/backlight": {
+		"exec": "~/.config/waybar/scripts/ddc-brightness.py",
+		"return-type": "json",
+		"interval": 30,
+		"signal": 8,
+		"on-scroll-up": "~/.config/waybar/scripts/ddc-brightness.py up && pkill -RTMIN+8 waybar",
+		"on-scroll-down": "~/.config/waybar/scripts/ddc-brightness.py down && pkill -RTMIN+8 waybar",
+		"on-click": "~/.config/waybar/scripts/ddc-brightness.py max && pkill -RTMIN+8 waybar",
+		"on-click-right": "~/.config/waybar/scripts/ddc-brightness.py min && pkill -RTMIN+8 waybar",
+		"tooltip": true
+	},
+	//wlr taskbar module
+	"wlr/taskbar": {
+		"format": "{icon}",
+		"icon-size": 14,
+		"tooltip-format": "{title}",
+		"on-click": "activate",
+		"on-click-right": "close",
+		"app_ids-mapping": {
+			"firefoxdeveloperedition": "firefox-developer-edition",
+		},
+		"rewrite": {
+			"Firefox Web Browser": "Firefox",
+			"Foot Server": "Terminal",
+			".*(steam_app_[0-9]+).*": "Game",
+		},
+	},
+	//custom power module using wlogout
+	"custom/power": {
+		"format": "⏻",
+		"on-click": "~/.config/wlogout/scripts/launch.sh",
+		"on-click-right": "killall -9 waybar && waybar &",
+		"tooltip": false,
+	},
+}
