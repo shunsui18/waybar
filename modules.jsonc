@@ -29,7 +29,7 @@
 		"format": "{}°",
 		"tooltip": true,
 		"interval": 1,
-		"exec": "wttrbar --location 712702 --ampm --nerd --date-format \" %a, %d %B %Y\" --custom-indicator \"{ICON}  {FeelsLikeC}\"",
+		"exec": "wttrbar --location <loacation-or-pin> --ampm --nerd --date-format \" %a, %d %B %Y\" --custom-indicator \"{ICON}  {FeelsLikeC}\"",
 		"return-type": "json",
 		"on-scroll-up": "",
 		"on-scroll-down": "",

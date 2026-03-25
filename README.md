@@ -47,12 +47,12 @@ Run without any arguments to launch the guided menu:
 bash <(curl -fsSL https://raw.githubusercontent.com/shunsui18/waybar/main/install.sh)
 ```
 
-The installer will walk you through picking a flavor:
+The installer will walk you through picking a flavor and setting your weather location:
 
 ```
   ╭─────────────────────────────────────────────────╮
-  │  ✦  Yozakura  ·  Waybar Theme Installer         │
-  │     sakura petals drift through the status bar  │
+  │  ✦  Yozakura  ·  Waybar Theme Installer          │
+  │     sakura petals drift through the status bar   │
   ╰─────────────────────────────────────────────────╯
 
      Select a theme flavour:
@@ -61,6 +61,17 @@ The installer will walk you through picking a flavor:
      [2]  Hiru  ·  昼  ·  light
 
   ❀  Choice: _
+
+  ─────────────────────────────────────────────────
+
+     Weather location for wttr.in:
+
+     [1]  City name  ·  e.g. London, New York
+     [2]  Pin code   ·  e.g. 700001, 10001
+
+  ❀  Type (1/2): _
+
+     Enter city name: _
 ```
 
 ---
@@ -70,12 +81,13 @@ The installer will walk you through picking a flavor:
 Skip the menu entirely by passing flags directly:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/shunsui18/waybar/main/install.sh) --theme hiru
+bash <(curl -fsSL https://raw.githubusercontent.com/shunsui18/waybar/main/install.sh) --theme hiru --location "London"
 ```
 
 | Flag | Values | Description |
 |---|---|---|
 | `--theme` | `yoru` \| `hiru` | Theme flavor to activate |
+| `--location` | city name or pin code | Weather location for the wttr.in module |
 | `--skip-deps` | — | Skip dependency installation |
 | `--skip-ddc` | — | Skip DDC monitor brightness setup |
 | `-h`, `--help` | — | Show help |
@@ -94,7 +106,7 @@ git clone https://github.com/shunsui18/waybar.git && cd waybar
 ./install.sh
 
 # 2b. Or with flags
-./install.sh --theme hiru --skip-ddc
+./install.sh --theme hiru --location "700001" --skip-ddc
 ```
 
 ---
@@ -106,10 +118,11 @@ git clone https://github.com/shunsui18/waybar.git && cd waybar
 3. **Installs dependencies** — installs all required packages via `pacman`; uses `paru` or `yay` for AUR packages
 4. **Bootstraps an AUR helper** — if neither `paru` nor `yay` is present, runs `scripts/chaotic-aur-setup.sh` to add the [Chaotic-AUR](https://aur.chaotic.cx) repository and installs `paru` automatically
 5. **Copies config** — copies the full config tree into `~/.config/waybar/`, preserving the directory structure and setting all scripts executable
-6. **Manages symlinks** — creates relative symlinks for the active flavor:
+6. **Patches weather location** — writes your city name or pin code into the `wttrbar` `--location` flag in `modules.jsonc`; prompted interactively or set via `--location`
+7. **Manages symlinks** — creates relative symlinks for the active flavor:
    - `color-map.css` → `styles/color-map-<flavor>.css`
    - `calander-module/clock-date-module.jsonc` → `clock-date-module-<flavor>.jsonc`
-7. **DDC brightness setup** — runs `scripts/ddc-setup.sh` to configure `ddcutil`/`ddccontrol`, the `i2c-dev` kernel module, udev rules, and detects your monitor's I²C bus (skip with `--skip-ddc`)
+8. **DDC brightness setup** — runs `scripts/ddc-setup.sh` to configure `ddcutil`/`ddccontrol`, the `i2c-dev` kernel module, udev rules, and detects your monitor's I²C bus (skip with `--skip-ddc`)
 
 ---
 

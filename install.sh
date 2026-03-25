@@ -283,13 +283,62 @@ run_ddc_setup() {
   fi
 }
 
+# ── location prompt ───────────────────────────────────────────────────
+prompt_location() {
+  printf '     Weather location for wttr.in:\n\n' >&2
+  printf '     %s[1]%s  City name  %s·  e.g. London, New York%s\n' \
+    "${_c}" "${_0}" "${_b}" "${_0}" >&2
+  printf '     %s[2]%s  Pin code   %s·  e.g. 700001, 10001%s\n' \
+    "${_c}" "${_0}" "${_b}" "${_0}" >&2
+  printf '\n' >&2
+  printf '  %s❀  %sType (1/2): %s' "${_m}" "${_w}" "${_0}" >&2
+
+  local type_choice
+  read -r type_choice
+  printf '\n' >&2
+
+  case "$type_choice" in
+    1) printf '     Enter city name: ' >&2 ;;
+    2) printf '     Enter pin code:  ' >&2 ;;
+    *) die "Invalid selection: '${type_choice}'" ;;
+  esac
+
+  local loc_value
+  read -r loc_value
+  printf '\n' >&2
+
+  [[ -n "$loc_value" ]] || die "Location cannot be empty."
+  printf '%s' "$loc_value"
+}
+
+# ── patch weather location in modules.jsonc ───────────────────────────
+patch_weather_location() {
+  local location="$1"
+  local target="$DEST/modules.jsonc"
+
+  if [[ ! -f "$target" ]]; then
+    warn "modules.jsonc not found at $target — skipping weather patch."
+    return
+  fi
+
+  # Escape any | characters in the location value (sed delimiter)
+  local escaped="${location//|/\\|}"
+
+  if grep -q '<loacation-or-pin>' "$target"; then
+    sed -i "s|--location <loacation-or-pin>|--location ${escaped}|g" "$target"
+    success "Weather location set  ·  ${location}"
+  else
+    warn "Location placeholder not found in modules.jsonc — already patched?"
+  fi
+}
+
 # ── interactive menu ──────────────────────────────────────────────────
 show_menu() {
   printf '\n' >&2
   printf '  %s╭─────────────────────────────────────────────────╮%s\n' "${_m}" "${_0}" >&2
-  printf '  %s│%s  %s✦%s  Yozakura  %s·%s  Waybar Theme Installer         %s│%s\n' \
+  printf '  %s│%s  %s✦%s  Yozakura  %s·%s  Waybar Theme Installer          %s│%s\n' \
     "${_m}" "${_0}" "${_w}" "${_0}" "${_c}" "${_0}" "${_m}" "${_0}" >&2
-  printf '  %s│%s     sakura petals drift through the status bar  %s│%s\n' \
+  printf '  %s│%s     sakura petals drift through the status bar   %s│%s\n' \
     "${_m}" "${_0}" "${_m}" "${_0}" >&2
   printf '  %s╰─────────────────────────────────────────────────╯%s\n' "${_m}" "${_0}" >&2
   printf '\n' >&2
@@ -303,11 +352,20 @@ show_menu() {
   read -r choice
   printf '\n' >&2
 
+  local flavour
   case "$choice" in
-    1) printf 'yoru' ;;
-    2) printf 'hiru' ;;
+    1) flavour='yoru' ;;
+    2) flavour='hiru' ;;
     *) die "Invalid selection: '${choice}'" ;;
   esac
+
+  # Location prompt (only if not already set via --location flag)
+  if [[ -z "$LOCATION" ]]; then
+    printf '  %s─────────────────────────────────────────────────%s\n\n' "${_m}" "${_0}" >&2
+    LOCATION="$(prompt_location)"
+  fi
+
+  printf '%s' "$flavour"
 }
 
 # ── completion banner ─────────────────────────────────────────────────
@@ -319,19 +377,23 @@ show_banner() {
     hiru) label="Hiru  ·  昼  ·  light" ;;
   esac
 
+  local loc_display="${LOCATION:-not set}"
+
   printf '\n' >&2
-  printf '  %s╭─────────────────────────────────────────────────────╮%s\n' "${_g}" "${_0}" >&2
-  printf '  %s│%s  %s✓%s  Yozakura Waybar installed                       %s│%s\n' \
+  printf '  %s╭─────────────────────────────────────────────────╮%s\n' "${_g}" "${_0}" >&2
+  printf '  %s│%s  %s✓%s  Yozakura Waybar installed                     %s│%s\n' \
     "${_g}" "${_0}" "${_w}" "${_0}" "${_g}" "${_0}" >&2
-  printf '  %s│%s     Flavour  :  %s%-33s%s      %s│%s\n' \
+  printf '  %s│%s     Flavour  :  %s%-33s%s  %s│%s\n' \
     "${_g}" "${_0}" "${_c}" "$label" "${_0}" "${_g}" "${_0}" >&2
-  printf '  %s│%s     Config   :  %s%-33s%s%s  │%s\n' \
+  printf '  %s│%s     Location :  %s%-33s%s  %s│%s\n' \
+    "${_g}" "${_0}" "${_b}" "$loc_display" "${_0}" "${_g}" "${_0}" >&2
+  printf '  %s│%s     Config   :  %s%-33s%s  %s│%s\n' \
     "${_g}" "${_0}" "${_b}" "$DEST" "${_0}" "${_g}" "${_0}" >&2
-  printf '  %s│%s                                                     %s│%s\n' \
+  printf '  %s│%s                                                   %s│%s\n' \
     "${_g}" "${_0}" "${_g}" "${_0}" >&2
-  printf '  %s│%s     Restart waybar to apply the theme.              %s│%s\n' \
+  printf '  %s│%s     Restart waybar to apply the theme.            %s│%s\n' \
     "${_g}" "${_0}" "${_g}" "${_0}" >&2
-  printf '  %s╰─────────────────────────────────────────────────────╯%s\n' "${_g}" "${_0}" >&2
+  printf '  %s╰─────────────────────────────────────────────────╯%s\n' "${_g}" "${_0}" >&2
   printf '\n' >&2
 }
 
@@ -339,14 +401,16 @@ show_banner() {
 usage() {
   printf '\n  Usage: %s [OPTIONS]\n\n' "$(basename "$0")" >&2
   printf '  Options:\n' >&2
-  printf '    --theme <flavour>   Apply theme without prompting  (yoru|hiru)\n' >&2
-  printf '    --skip-deps         Skip dependency installation\n' >&2
-  printf '    --skip-ddc          Skip ddc-setup.sh\n' >&2
-  printf '    -h, --help          Show this help\n\n' >&2
+  printf '    --theme <flavour>      Apply theme without prompting  (yoru|hiru)\n' >&2
+  printf '    --location <value>     Weather location (city name or pin code)\n' >&2
+  printf '    --skip-deps            Skip dependency installation\n' >&2
+  printf '    --skip-ddc             Skip ddc-setup.sh\n' >&2
+  printf '    -h, --help             Show this help\n\n' >&2
   exit 0
 }
 
 FLAVOUR=""
+LOCATION=""
 SKIP_DEPS=false
 SKIP_DDC=false
 
@@ -355,6 +419,11 @@ while [[ $# -gt 0 ]]; do
     --theme)
       [[ -n "${2:-}" ]] || die "--theme requires an argument: yoru or hiru"
       FLAVOUR="${2,,}"
+      shift 2
+      ;;
+    --location)
+      [[ -n "${2:-}" ]] || die "--location requires an argument (city name or pin code)"
+      LOCATION="$2"
       shift 2
       ;;
     --skip-deps) SKIP_DEPS=true; shift ;;
@@ -377,6 +446,14 @@ main() {
   # Prompt if no --theme flag
   if [[ -z "$FLAVOUR" ]]; then
     FLAVOUR="$(show_menu)"
+    # show_menu also sets LOCATION interactively if it was not pre-set
+  fi
+
+  # If --theme was passed but --location was not, prompt for location now
+  if [[ -z "$LOCATION" ]]; then
+    printf '\n' >&2
+    printf '  %s─────────────────────────────────────────────────%s\n\n' "${_m}" "${_0}" >&2
+    LOCATION="$(prompt_location)"
   fi
 
   # Dependencies
@@ -386,6 +463,9 @@ main() {
 
   # Copy config tree
   install_files
+
+  # Patch weather location in modules.jsonc
+  patch_weather_location "$LOCATION"
 
   # Symlinks for chosen flavour
   apply_symlinks "$FLAVOUR"
