@@ -51,7 +51,7 @@ The installer will walk you through picking a flavor:
 
 ```
   ╭─────────────────────────────────────────────────╮
-  │  ✦  Yozakura  ·  Waybar Theme Installer        │
+  │  ✦  Yozakura  ·  Waybar Theme Installer         │
   │     sakura petals drift through the status bar  │
   ╰─────────────────────────────────────────────────╯
 
