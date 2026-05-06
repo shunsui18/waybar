@@ -44,7 +44,7 @@ A handcrafted pastel color palette for [Waybar](https://github.com/Alexays/Wayba
 Run without any arguments to launch the guided menu:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/shunsui18/waybar/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/shunsui18/yozakura-waybar/main/install.sh)
 ```
 
 The installer will walk you through picking a flavor and setting your weather location:
@@ -81,7 +81,7 @@ The installer will walk you through picking a flavor and setting your weather lo
 Skip the menu entirely by passing flags directly:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/shunsui18/waybar/main/install.sh) --theme hiru --location "London"
+bash <(curl -fsSL https://raw.githubusercontent.com/shunsui18/yozakura-waybar/main/install.sh) --theme hiru --location "London"
 ```
 
 | Flag | Values | Description |
@@ -100,7 +100,7 @@ If you prefer to clone and run locally:
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/shunsui18/waybar.git && cd waybar
+git clone https://github.com/shunsui18/yozakura-waybar.git && cd yozakura-waybar
 
 # 2a. Interactive
 ./install.sh
@@ -139,10 +139,10 @@ The installer handles all of the below automatically.
 |---|---|---|
 | `waybar` | pacman | Status bar for Wayland |
 | `hyprland` | pacman | Wayland compositor (workspace module) |
-| `rofi` | pacman | App launcher · [yozakura-rofi](https://github.com/shunsui18/rofi) |
-| `wlogout` | pacman | Logout / power menu · [yozakura-wlogout](https://github.com/shunsui18/wlogout) |
+| `rofi` | pacman | App launcher · [yozakura-rofi](https://github.com/shunsui18/yozakura-rofi) |
+| `wlogout` | pacman | Logout / power menu · [yozakura-wlogout](https://github.com/shunsui18/yozakura-wlogout) |
 | `playerctl` | pacman | Media controls (MPRIS module) |
-| `swaync` | pacman | Notification center · [yozakura-swaync](https://github.com/shunsui18/swaync) |
+| `swaync` | pacman | Notification center · [yozakura-swaync](https://github.com/shunsui18/yozakura-swaync) |
 | `blueman` | pacman | Bluetooth management |
 | `bluez` | pacman | Bluetooth backend |
 | `pulseaudio` | pacman | Audio backend |
@@ -164,16 +164,16 @@ This bar is designed to pair with the rest of the Yozakura ecosystem:
 
 | Package | Repo |
 |---|---|
-| App Launcher | [yozakura-rofi](https://github.com/shunsui18/rofi) *(coming soon)* |
-| Notification Center | [yozakura-swaync](https://github.com/shunsui18/swaync) *(coming soon)* |
-| Power Menu | [yozakura-wlogout](https://github.com/shunsui18/wlogout) *(coming soon)* |
+| App Launcher | [yozakura-rofi](https://github.com/shunsui18/yozakura-rofi) *(coming soon)* |
+| Notification Center | [yozakura-swaync](https://github.com/shunsui18/yozakura-swaync) *(coming soon)* |
+| Power Menu | [yozakura-wlogout](https://github.com/shunsui18/yozakura-wlogout) *(coming soon)* |
 
 ---
 
 ## ✦ File Structure
 
 ```
-waybar/
+yozakura-waybar/
 ├── assets/
 │   ├── yozakura-yoru-waybar-preview.png
 │   └── yozakura-hiru-waybar-preview.png
